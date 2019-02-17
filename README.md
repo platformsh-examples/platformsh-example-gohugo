@@ -1,4 +1,4 @@
-# Deploying Hugo on Platformsh"
+# Deploying Hugo on Platformsh
 
 *date: 2019-02-17T18:39:10+01:00*
 
