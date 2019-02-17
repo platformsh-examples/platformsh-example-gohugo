@@ -1,0 +1,29 @@
+# .platform.app.yaml
+
+# The name of this application, which must be unique within a project.
+name: 'hugo'
+
+# The type key specifies the language and version for your application.
+type: 'golang:1.11'
+
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+      wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz
+      tar xvzf hugo_0.54.0_Linux-64bit.tar.gz
+      rm hugo_0.54.0_Linux-64bit.tar.gz
+      ./hugo
+
+# The size of the persistent disk of the application (in MB).
+disk: 5120
+
+# The configuration of the application when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'public'
+            index: ['index.html']
+            scripts: false
+            allow: true
