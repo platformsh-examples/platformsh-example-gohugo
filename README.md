@@ -2,10 +2,6 @@
 
 *date: 2019-02-17T18:39:10+01:00*
 
-[Platform.sh](https://platform.sh) is a wonderful tool to automate your deployments and make sure your site is running well. We have a lot of examples on different server-side technologies [available on Github](https://github.com/platformsh) but none of them relates to static site generators.
-
-I'll begin with one of my favorite one that I use for this site: [Hugo](https://gohugo.io/).
-
 ## 1. Setup your local machine
 
 You'll need 3 tools to deploy your Hugo site on Platform.sh:
@@ -326,18 +322,3 @@ Platform.sh then checks that everything seems correct and deploys the container 
 The last output is the new URL of your application. You can also check that the project has been successully deployed on the web interface:
 
 Now go the URL and you will be able to see your hugo site
-
-## 6. Configure your domain name
-
-As I want to host the site on `hugo.moigneu.com`, I just need to add a new `CNAME` with the name `hugo` and the target `master-7rqtwti-<project ID>.<region>.platformsh.site` that was my existing URL on Platform.sh.
-
-We now need to add a DNS record to match this. I'm using [Cloudflare](https://cloudflare.com) for my domains DNS configuration but it will be the same with any other provider.
-
-If you can't use a `CNAME`, add 3 `A` records with the IPs available on [Platform.sh public IPs](https://docs.platform.sh/development/public-ips.html).
-
-Wait for the DNS to propagate and you will be able to add the domain on Platform.sh.
-Go to your `Master` environment `Settings` / `Domains` and add the hostname of your hugo site
-
-Platform.sh will redeploy your site to apply the new routing rules. 
-
-If the Let's Encrypt TLS challenge fails, it means that your DNS setting is not yet effective. You can redeploy a project by repushing new code or by using the Platform.sh CLI (`env:redeploy`).
